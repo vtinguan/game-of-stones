@@ -13,4 +13,10 @@ class GameTest {
         val result = Game.checkWinner(inputedValues)
         Assert.assertEquals(responseValues, result)
     }
+
+    @Test(expected = IllegalStateException::class)
+    fun testInvalidInputValue() {
+        val invalidValue = -1
+        Game.checkInputValue(invalidValue)
+    }
 }

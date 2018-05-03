@@ -18,7 +18,14 @@ class Game {
             }
             return response
         }
+
+        fun checkInputValue(inputValue: Int) {
+            if(inputValue <= 0) {
+                throw IllegalStateException("Value can't be less than 1")
+            }
+        }
     }
+
 }
 
 enum class GamePlayers(val friendlyName: String){
@@ -29,13 +36,13 @@ fun main(args: Array<String>) {
     val input = Scanner(System.`in`)
 
     val testNum = input.nextInt()
+    Game.checkInputValue(testNum)
+
     val inputedValues :MutableList<Int> = arrayListOf()
 
     for(i in 1..testNum) {
         val inputedValue = input.nextInt()
-        if (inputedValue <= 0) {
-            throw IllegalStateException("Value can't be less than 1")
-        }
+        Game.checkInputValue(inputedValue)
         inputedValues.add(inputedValue)
     }
     Game.checkWinner(inputedValues)
